@@ -47,4 +47,10 @@ public class MainActivity extends AppCompatActivity {
         txt.setText(""+die);
         his.addView(txt);
     }
+
+    public void clear(android.view.View view) {
+        can1.removeAllViews();
+        can2.removeAllViews();
+        his.removeAllViews();
+    }
 }

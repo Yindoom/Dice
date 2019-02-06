@@ -47,6 +47,12 @@
         android:layout_gravity="bottom"
         android:onClick="rollDie"
         android:text="Roll Dice" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:onClick="clear"
+        android:text="Clear"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
