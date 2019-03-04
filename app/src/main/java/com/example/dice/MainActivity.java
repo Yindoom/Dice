@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -49,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         can.removeAllViews();
         Random rand = new Random();
         for (int i = 0; i < amount.getValue(); i++) {
-            int dieRoll = rand.nextInt(sides.getValue())+1;
+            int dieRoll = rand.nextInt(/*sides.getValue()*/ 6)+1;
             list.add(dieRoll);
             drawDie(dieRoll);
         }
@@ -68,5 +66,11 @@ public class MainActivity extends AppCompatActivity {
         Intent x = new Intent(this, RollList.class);
         x.putExtra("list", list);
         startActivity(x);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
     }
 }
