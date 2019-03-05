@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class RollList extends ListActivity {
 
-    ArrayList<Integer> list;
+    ArrayList<ArrayList<Integer>> rolls;
+    ArrayList<Date> timestamps;
 
     Adapter a;
 
@@ -17,9 +19,10 @@ public class RollList extends ListActivity {
     public void onCreate(Bundle data) {
         super.onCreate(data);
 
-        list = (ArrayList<Integer>) getIntent().getSerializableExtra("list");
+        rolls = (ArrayList<ArrayList<Integer>>) getIntent().getSerializableExtra("rolls");
+        timestamps = (ArrayList<Date>) getIntent().getSerializableExtra("timestamps");
 
-        a = new Adapter(this, R.layout.cell, list);
+        a = new Adapter(this, R.layout.cell, rolls, timestamps);
         this.setListAdapter(a);
     }
 }

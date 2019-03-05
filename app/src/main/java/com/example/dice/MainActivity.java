@@ -9,6 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,7 +18,8 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout can;
     NumberPicker amount;
     NumberPicker sides;
-    ArrayList<Integer> list;
+    ArrayList<ArrayList<Integer>> rolls;
+    ArrayList<Date> timestamps;
     Button clear;
     Button roll;
 
@@ -25,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        list = new ArrayList<>();
+        timestamps = new ArrayList<>();
+        rolls = new ArrayList<>();
         can = this.findViewById(R.id.canvas);
         amount = this.findViewById(R.id.amount);
         amount.setMinValue(1);
@@ -46,11 +50,14 @@ public class MainActivity extends AppCompatActivity {
     public void rollDie(android.view.View view){
         can.removeAllViews();
         Random rand = new Random();
+        ArrayList<Integer> x = new ArrayList<>();
         for (int i = 0; i < amount.getValue(); i++) {
             int dieRoll = rand.nextInt(/*sides.getValue()*/ 6)+1;
-            list.add(dieRoll);
+            x.add(dieRoll);
             drawDie(dieRoll);
         }
+        rolls.add(x);
+        timestamps.add(Calendar.getInstance().getTime());
     }
 
     private void drawDie(int die) {
@@ -64,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToRolls(View view) {
         Intent x = new Intent(this, RollList.class);
-        x.putExtra("list", list);
+        x.putExtra("rolls", rolls);
+        x.putExtra("timestamps", timestamps);
         startActivity(x);
     }
 
